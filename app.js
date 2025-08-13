@@ -1,13 +1,11 @@
-// Captura elementos do HTML
-let elemAmigo = document.getElementById("nome-amigo");
-let elemListaAmigos = document.getElementById("lista-amigos");
-let elemListaSorteio = document.getElementById("lista-sorteio");
+let elemAmigo = document.getElementById("nome-amigo"); //input
+let elemListaAmigos = document.getElementById("lista-amigos"); // paragrafo
+let elemListaSorteio = document.getElementById("lista-sorteio"); // paragrafo
 
-// Array para armazenar os amigos
 let amigos = [];
 
-// Adiciona um participante à lista
 function adicionar() {
+  // Adiciona participante na lista de amigos desde que o campo não esteja em vazio ou já adicionado
   const amigo = elemAmigo.value;
   if (amigo && !amigos.includes(amigo.toUpperCase())) {
     amigos.push(amigo.toUpperCase());
@@ -15,32 +13,20 @@ function adicionar() {
     elemAmigo.value = "";
   }
 }
-
-// Realiza o sorteio
 function sortear() {
-  // Limpa a lista de sorteios anterior
   elemListaSorteio.innerHTML = "";
-  
-  if (amigos.length < 2) {
-    alert("Adicione pelo menos dois amigos para o sorteio!");
-    return;
-  }
 
-  // Cria uma cópia da lista de amigos para embaralhar
-  let amigosSorteados = amigos.slice();
-  
-  // Realiza o sorteio de forma que ninguém tire a si mesmo
-  do {
-    embaralhaArray(amigosSorteados);
-  } while (amigosSorteados.some((amigo, index) => amigo === amigos[index]));
-
-  // Exibe o resultado do sorteio
-  for (let i = 0; i < amigos.length; i++) {
-    elemListaSorteio.innerHTML += `${amigos[i]} --> ${amigosSorteados[i]}<br>`;
+  embaralhaArray(amigos);
+  for (i = 0; i < amigos.length; i++) {
+    if (i == amigos.length - 1) {
+      elemListaSorteio.innerHTML += `${amigos[i]} --> ${amigos[0]}<br>`;
+    } else {
+      elemListaSorteio.innerHTML += `${amigos[i]} --> ${amigos[i + 1]}<br>`;
+    }
   }
 }
 
-// Função para embaralhar o array (Fisher-Yates shuffle)
+// FUNCAO PARA EMBARALHAR ARRAY
 function embaralhaArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -48,9 +34,8 @@ function embaralhaArray(arr) {
   }
 }
 
-// Reinicia o aplicativo
 function reiniciar() {
-  amigos = [];
+  amigos.length = 0;
   elemListaSorteio.innerHTML = "";
   elemAmigo.value = "";
   elemListaAmigos.textContent = "";
