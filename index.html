@@ -1,85 +1,195 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Inter&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="
-https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
-"
-      rel="stylesheet"
-    />
-    <link
-      href="
-https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css
-"
-      rel="stylesheet"
-    />
-    <title>Amigo Secreto</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+body {
+  background: #ffffff;
+  min-height: 100vh;
+  position: relative;
+}
 
-  <body>
-    <main>
-      <div class="content">
-        <div class="content__corner-rectangle"></div>
-        <div class="content__main">
-          <section>
-            <h1 class="section__title">Amigo <span>Secreto</span></h1>
-            <form class="form">
-              <label class="form__label"> Digite o nome de um amigo </label>
-              <input
-                id="nome-amigo"
-                class="form__input"
-                type="text"
-                placeholder="Nome do amigo"
-              />
-              <div class="form__buttons">
-                <button
-                  onclick="adicionar()"
-                  type="button"
-                  class="button primary"
-                >
-                  Adicionar
-                </button>
-                <button
-                  onclick="sortear()"
-                  type="button"
-                  class="button secondary"
-                >
-                  Sortear
-                </button>
-                <a onclick="reiniciar()" href="#" class="form__link"
-                  >Reiniciar</a
-                >
-              </div>
-            </form>
-          </section>
-          <section class="section--results">
-            <article>
-              <p class="friends__title">Amigos incluídos</p>
-              <div class="friends__container">
-                <p id="lista-amigos"></p>
-              </div>
-            </article>
-            <article>
-              <p class="prizeDraw__title">Sorteio</p>
-              <div class="prizeDraw__container">
-                <p id="lista-sorteio"></p>
-              </div>
-            </article>
-          </section>
-        </div>
-      </div>
-    </main>
-    <div class="background__detail"></div>
+.background__detail {
+  background-color: #fafafa;
+  height: calc(100% - 389px);
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 195px;
+  z-index: 0;
+}
 
-    <script src="js/app.js"></script>
-  </body>
-</html>
+.button {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 16px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  font-weight: 700;
+  gap: 10px;
+  height: 52px;
+  justify-content: center;
+  line-height: normal;
+  padding: 16px 24px;
+  text-align: center;
+  width: 208px;
+}
+
+.content {
+  background-color: #3aa0ff;
+  border: 1px solid #1875e8;
+  filter: drop-shadow(0px 0px 30px #000000);
+  height: 871px;
+  left: 50%;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  z-index: 1;
+}
+
+.content__main {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  justify-content: start;
+  padding: 100px;
+}
+
+.friends__container {
+  align-items: center;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  font-size: 21px;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 160%;
+  margin-top: 1rem;
+  padding: 24px;
+  width: 453px;
+}
+
+.friends__container > p {
+  color: #000000;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+.friends__title {
+  color: #000000;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 110%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  font-family: Inter;
+  font-style: normal;
+}
+
+.form__buttons {
+  align-items: center;
+  display: flex;
+  gap: 32px;
+}
+
+.form__input {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #0c0c0c;
+  border-radius: 8px;
+  color: #000000;
+  display: flex;
+  font-size: 21px;
+  font-weight: 400;
+  height: 56px;
+  margin-bottom: 32px;
+  outline: none;
+  padding: 8px 16px;
+  width: 517px;
+}
+
+.form__input::placeholder {
+  color: #000000;
+  font-size: 21px;
+}
+
+.form__label {
+  color: #000000;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 110%;
+  margin-bottom: 16px;
+}
+
+.form__link {
+  color: #000000;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 110%;
+  text-align: center;
+  text-decoration-line: underline;
+}
+
+.page__image {
+  position: absolute;
+  right: 0;
+  top: 76px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.prizeDraw__container {
+  color: #000000;
+  font-size: 21px;
+  font-style: italic;
+  font-weight: 700;
+  height: 199px;
+  line-height: 160%;
+  margin-top: 1rem;
+}
+
+.prizeDraw__title {
+  color: #020202;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 110%;
+}
+
+.primary {
+  background-color: #fff9f9;
+  color: #050505;
+}
+
+.section--results {
+  align-items: start;
+  display: flex;
+  font-family: Inter;
+  font-style: normal;
+  gap: 48px;
+}
+
+.section__title {
+  color: #000000;
+  font-family: Chakra Petch;
+  font-size: 88px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 80%;
+  margin: 0 0 80px 0;
+}
+
+.section__title > span {
+  color: #000000;
+}
+
+.secondary {
+  background-color: #ffffff;
+  color: #000000;
+}
